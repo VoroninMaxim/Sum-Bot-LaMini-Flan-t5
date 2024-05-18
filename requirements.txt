@@ -6,4 +6,3 @@ pytest
 selenium
 langchain
 tempfile
-base64
