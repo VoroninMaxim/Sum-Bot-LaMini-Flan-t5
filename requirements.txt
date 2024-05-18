@@ -1,6 +1,6 @@
 streamlit
 torch
-transformers
+transformers==4.40.2
 uvicorn
 pytest
 selenium
