@@ -1,10 +1,9 @@
 #-----https://github.com/InsightEdge01/MultipleDocumentllama2Bot/blob/master/app.py
 import streamlit as st
-import torch
 import base64
 import os
 import tempfile
-import textwrap
+import torch
 
 from transformers import AutoTokenizer, AutoModelForSeq2SeqLM, pipeline, T5Tokenizer, T5ForConditionalGeneration
 
@@ -13,7 +12,6 @@ from langchain.document_loaders import PyPDFLoader
 
 checkpoint = "MBZUAI/LaMini-Flan-T5-783M"
 tokenizer = T5Tokenizer.from_pretrained(checkpoint)
-#base_model = AutoModelForSeq2SeqLM.from_pretrained(checkpoint, device_map='auto', torch_dtype=torch.float16, load_in_8bit=False)
 base_model = T5ForConditionalGeneration.from_pretrained(checkpoint, device_map='auto', torch_dtype=torch.float32)
 
 #---------------------------PIPLINE----------------------------------------------------------generation
