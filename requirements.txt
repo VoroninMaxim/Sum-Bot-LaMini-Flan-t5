@@ -4,5 +4,4 @@ transformers
 uvicorn
 pytest
 selenium
-langchain
-tempfile
+langchain==0.1.14
