@@ -4,3 +4,6 @@ transformers
 uvicorn
 pytest
 selenium
+langchain
+tempfile
+base64
