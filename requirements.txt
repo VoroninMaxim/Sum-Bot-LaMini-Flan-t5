@@ -5,4 +5,3 @@ uvicorn
 pytest
 selenium
 langchain
-tempfile
