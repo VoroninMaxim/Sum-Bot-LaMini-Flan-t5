@@ -5,14 +5,16 @@ import os
 import tempfile
 import torch
 
-from transformers import AutoTokenizer, AutoModelForSeq2SeqLM, pipeline, T5Tokenizer, T5ForConditionalGeneration
+from PIL import Image
+
+from transformers import AutoTokenizer, AutoModelForSeq2SeqLM, pipeline
 
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain.document_loaders import PyPDFLoader
 
 checkpoint = "MBZUAI/LaMini-Flan-T5-783M"
-tokenizer = T5Tokenizer.from_pretrained(checkpoint)
-base_model = T5ForConditionalGeneration.from_pretrained(checkpoint, device_map='auto', torch_dtype=torch.float32)
+tokenizer = AutoTokenizer.from_pretrained(checkpoint)
+base_model = AutoModelForSeq2SeqLM.from_pretrained(checkpoint, device_map='auto', torch_dtype=torch.float32)
 
 #---------------------------PIPLINE----------------------------------------------------------generation
 def generation_pipeline():
@@ -71,7 +73,7 @@ def displayPDF(file):
 def chatbot():
     st.title('Chatbot')
     container = st.container()
-    prompt = container.chat_input('Ask me something')
+    prompt = container.chat_input('Спроси меня о чем-нибудь 🤖')
     if prompt:
         with (container.chat_message('assistant')):
             answer = generated_text(prompt)
@@ -82,12 +84,12 @@ def chatbot():
 #--------------------------------------------------------------------
 
 def main():
-    st.title("Сумматор AI PDF :books:")
+    st.title("Составитель резюме PDF-файла с помощью ИИ 📜")
     # Initialize Streamlit
-    st.sidebar.title("Document Processing")
-    uploaded_files = st.sidebar.file_uploader("Upload files", accept_multiple_files=True)
+    st.sidebar.title("Выберите PDF-файл ")
+    uploaded_files = st.sidebar.file_uploader("Выберите PDF-файл", accept_multiple_files=True)
 
-    if uploaded_files :
+    if uploaded_files:
         loader = None
         for file in uploaded_files:
             file_extension = os.path.splitext(file.name)[1]
@@ -99,14 +101,20 @@ def main():
                loader = temp_file_path
                col1, col2 = st.columns([0.9, 0.6])
                with col1:
-                  st.info("Uploaded PDF")
+                  st.info("Выберите PDF-файл")
                   pdf_view = displayPDF(loader)
                with col2:
                    summaru = summarization_pipeline(loader)
-                   st.info("Summarization")
+                   st.info("Сумматор PDF")
                    st.success(summaru)
                with st.container():
-                  chatbot()
+                   img_contact_form = Image.open("data/picmix.com_2377209.png")
+                   with st.container():
+                       image_column, text_column = st.columns((1, 2))
+                       with image_column:
+                           st.image(img_contact_form)
+                       with text_column:
+                            chatbot()
 
     else:
         with st.container():
