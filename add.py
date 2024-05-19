@@ -4,6 +4,7 @@ import base64
 import os
 import tempfile
 import torch
+from streamlit_pdf_viewer import pdf_viewer
 
 from transformers import AutoTokenizer, AutoModelForSeq2SeqLM, pipeline, T5Tokenizer, T5ForConditionalGeneration
 
@@ -14,7 +15,7 @@ checkpoint = "MBZUAI/LaMini-Flan-T5-783M"
 tokenizer = T5Tokenizer.from_pretrained(checkpoint)
 base_model = T5ForConditionalGeneration.from_pretrained(checkpoint, device_map='auto', torch_dtype=torch.float32)
 
-#---------------------------PIPLINE----------------------------------------------------------generation
+
 def generation_pipeline():
     pipe_generation = pipeline('text2text-generation',
                                model=base_model,
@@ -77,7 +78,7 @@ def main():
     st.title("Составитель резюме PDF-файла с помощью LaMini-LM модели 📃")
     # Initialize Streamlit
     st.sidebar.title("Обработка документов")
-    uploaded_files = st.sidebar.file_uploader("Загружать файлы PDF", accept_multiple_files=True)
+    uploaded_files = st.sidebar.file_uploader("Загружать файлы PDF", accept_multiple_files=True, type=('pdf'))
 
     if uploaded_files :
         loader = None
@@ -89,10 +90,12 @@ def main():
 
             if file_extension == ".pdf":
                loader = temp_file_path
-               col1, col2 = st.columns([0.9, 0.6])
+               col1, col2 = st.columns([50, 50])
                with col1:
                   st.info("PDF фаил")
-                  pdf_view = displayPDF(loader)
+                  binary_data = loader.getvalue()
+                  pdf_viewer(input=binary_data, width=700)
+                  #pdf_view = displayPDF(loader)
                with col2:
                    summaru = summarization_pipeline(loader)
                    st.info("Составитель резюме")
