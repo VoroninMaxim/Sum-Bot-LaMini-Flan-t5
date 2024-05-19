@@ -5,13 +5,13 @@ import os
 import tempfile
 import torch
 
-from transformers import AutoTokenizer, AutoModelForSeq2SeqLM, pipeline, T5Tokenizer, T5ForConditionalGeneration
+from transformers import AutoTokenizer, AutoModelForSeq2SeqLM, pipeline
 
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain.document_loaders import PyPDFLoader
 
 checkpoint = 'MBZUAI/LaMini-Flan-T5-783M'
-base_model = AutoModelForSeq2SeqLM.from_pretrained(checkpoint, device_map='auto', torch_dtype=torch.float16, load_in_8bit=True)
+base_model = AutoModelForSeq2SeqLM.from_pretrained(checkpoint, device_map='cpu')
 tokenizer = AutoTokenizer.from_pretrained(checkpoint)
 
 
