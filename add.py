@@ -10,9 +10,10 @@ from transformers import AutoTokenizer, AutoModelForSeq2SeqLM, pipeline, T5Token
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain.document_loaders import PyPDFLoader
 
-checkpoint = "MBZUAI/LaMini-Flan-T5-783M"
-tokenizer = T5Tokenizer.from_pretrained(checkpoint)
-base_model = AutoModelForSeq2SeqLM.from_pretrained(checkpoint, device_map='auto', torch_dtype=torch.float32)
+checkpoint = 'MBZUAI/LaMini-Flan-T5-783M'
+base_model = AutoModelForSeq2SeqLM.from_pretrained(checkpoint, device_map='auto', torch_dtype=torch.float16, load_in_8bit=True)
+tokenizer = AutoTokenizer.from_pretrained(checkpoint)
+
 
 #---------------------------PIPLINE----------------------------------------------------------generation
 def generation_pipeline():
