@@ -1,16 +1,7 @@
 streamlit
 torch
-transformers
+transformers==4.40.2
 uvicorn
 pytest
 selenium
 langchain==0.1.14
-ctransformers==0.2.27
-sentence-transformers==2.2.2
-sentencepiece==0.2.0
-torchvision==0.18.0
-datasets==2.19.1
-accelerate==0.30.1
-pypdf==4.2.0
-PyPDF2==3.0.1
-pillow
