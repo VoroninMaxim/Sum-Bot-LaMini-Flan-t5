@@ -12,7 +12,7 @@ from langchain.document_loaders import PyPDFLoader
 
 checkpoint = "MBZUAI/LaMini-Flan-T5-783M"
 tokenizer = T5Tokenizer.from_pretrained(checkpoint)
-base_model = T5ForConditionalGeneration.from_pretrained(checkpoint, device_map='auto', torch_dtype=torch.float32)
+base_model = AutoModelForSeq2SeqLM.from_pretrained(checkpoint, device_map='auto', torch_dtype=torch.float32)
 
 #---------------------------PIPLINE----------------------------------------------------------generation
 def generation_pipeline():
