@@ -1,5 +1,5 @@
 streamlit
-torch==2.3.0
+torch
 transformers==4.40.2
 uvicorn
 pytest
@@ -9,3 +9,4 @@ ctransformers==0.2.27
 sentence-transformers==2.2.2
 sentencepiece==0.2.0
 torchvision==0.18.0
+datasets==2.19.1
