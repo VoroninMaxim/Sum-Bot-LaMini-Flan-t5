@@ -79,7 +79,7 @@ def chatbot():
 
 
 def main():
-    st.title("Составитель резюме PDF-файла с помощью LaMini-LM модели 📃")
+    st.title("Составитель резюме PDF-файла с помощью ИИ 📃")
     # Initialize Streamlit
     st.sidebar.title("Обработка документов")
     uploaded_files = st.sidebar.file_uploader("Загружать файлы PDF", accept_multiple_files=True, type=('pdf'))
@@ -97,14 +97,14 @@ def main():
                col1, col2 = st.columns([50, 50])
                with col1:
                   st.info("PDF фаил")
-                  # binary_data = loader.getvalue()
-                  # pdf_viewer(input=binary_data, width=700)
-                  pdf_view = displayPDF(loader)
+                  binary_data = loader.getvalue()
+                  pdf_viewer(input=binary_data, width=700)
+                  #pdf_view = displayPDF(loader)
                with col2:
                    summaru = summarization_pipeline(loader)
                    st.info("Составитель резюме")
-                   translator_summari = translator(summaru)
-                   st.success(translator_summari[0]['translation_text'])
+                   # translator_summari = translator(summaru)
+                   # st.success(translator_summari[0]['translation_text'])
                with st.container():
                   chatbot()
 
