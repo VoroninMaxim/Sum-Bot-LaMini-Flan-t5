@@ -72,7 +72,8 @@ def chatbot():
     prompt = container.chat_input('Ask me something')
     if prompt:
         with (container.chat_message('assistant')):
-            answer = generated_text(prompt)
+            english_text = translator(prompt)[0]['translation_text']
+            answer = generated_text(english_text)
             answer_all = answer[0]['generated_text']
             translated_text = translator(answer_all)
             container.markdown(translated_text[0]['translation_text'])
