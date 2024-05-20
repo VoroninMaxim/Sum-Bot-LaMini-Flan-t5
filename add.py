@@ -18,8 +18,8 @@ base_model = T5ForConditionalGeneration.from_pretrained(checkpoint, device_map='
 model_checkpoint_en_ru = "glazzova/ml_translation_model1"
 translator_en_ru = pipeline("translation", model=model_checkpoint_en_ru)
 
-model_checkpoint_ru_en = "Gopal1853/Gopal-finetuned-custom-ru-to-en"
-translator_ru_en = pipeline("translation_ru_to_en", model=model_checkpoint_ru_en)
+# model_checkpoint_ru_en = "Gopal1853/Gopal-finetuned-custom-ru-to-en"
+# translator_ru_en = pipeline("translation_ru_to_en", model=model_checkpoint_ru_en)
 
 def generation_pipeline():
     pipe_generation = pipeline('text2text-generation',
@@ -75,9 +75,9 @@ def chatbot():
     prompt = container.chat_input('Ask me something')
     if prompt:
         with (container.chat_message('assistant')):
-            english_text = translator_ru_en(prompt)
-            english_text = english_text[0]['translation_text']
-            answer = generated_text(english_text)
+            # english_text = translator_ru_en(prompt)
+            # english_text = english_text[0]['translation_text']
+            answer = generated_text(prompt)
             answer_all = answer[0]['generated_text']
             translated_text = translator_en_ru(answer_all)
             container.markdown(translated_text[0]['translation_text'])
