@@ -97,9 +97,9 @@ def main():
                col1, col2 = st.columns([50, 50])
                with col1:
                   st.info("PDF фаил")
-                  binary_data = loader.getvalue()
-                  pdf_viewer(input=binary_data, width=700)
-                  #pdf_view = displayPDF(loader)
+                  # binary_data = loader.getvalue()
+                  # pdf_viewer(input=binary_data, width=700)
+                  pdf_view = displayPDF(loader)
                with col2:
                    summaru = summarization_pipeline(loader)
                    st.info("Составитель резюме")
