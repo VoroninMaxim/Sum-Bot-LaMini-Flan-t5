@@ -15,8 +15,11 @@ checkpoint = "MBZUAI/LaMini-Flan-T5-783M"
 tokenizer = T5Tokenizer.from_pretrained(checkpoint)
 base_model = T5ForConditionalGeneration.from_pretrained(checkpoint, device_map='auto', torch_dtype=torch.float32)
 
-model_checkpoint = "glazzova/ml_translation_model1"
-translator = pipeline("translation", model=model_checkpoint)
+model_checkpoint_en_ru = "glazzova/ml_translation_model1"
+translator_en_ru = pipeline("translation", model=model_checkpoint_en_ru)
+
+model_checkpoint_ru_en = "Gopal1853/Gopal-finetuned-custom-ru-to-en"
+translator_ru_en = pipeline("translation_ru_to_en", model=model_checkpoint_ru_en)
 
 def generation_pipeline():
     pipe_generation = pipeline('text2text-generation',
@@ -72,11 +75,11 @@ def chatbot():
     prompt = container.chat_input('Ask me something')
     if prompt:
         with (container.chat_message('assistant')):
-            english_text = translator(prompt)
+            english_text = translator_ru_en(prompt)
             english_text = english_text[0]['translation_text']
             answer = generated_text(english_text)
             answer_all = answer[0]['generated_text']
-            translated_text = translator(answer_all)
+            translated_text = translator_en_ru(answer_all)
             container.markdown(translated_text[0]['translation_text'])
 
 
@@ -105,7 +108,7 @@ def main():
                with col2:
                    summaru = summarization_pipeline(loader)
                    st.info("Составитель резюме")
-                   translator_summari = translator(summaru)
+                   translator_summari = translator_en_ru(summaru)
                    st.success(translator_summari[0]['translation_text'])
                with st.container():
                   chatbot()
