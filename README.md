@@ -15,6 +15,6 @@
 
 _Ниже представлен результат тестирования_
 
-[![Build Staus](https://github.com/VoroninMaxim/project_toxi_text/actions/workflows/python-app.yml/badge.svg?branch=main)](https://github.com/VoroninMaxim/project_toxi_text/blob/main/.github/workflows/python-app.yml)
+[![Build Staus](https://github.com/VoroninMaxim/project_toxi_text/actions/workflows/python-app.yml/badge.svg?branch=main)](https://github.com/VoroninMaxim/Sum-Bot-LaMini-Flan-t5/blob/master/.github/workflows/python-app.yml)
 
-[![Typing SVG](https://readme-typing-svg.herokuapp.com?font=Fira+Code&pause=1000&color=000000&random=false&width=435&lines=Link+to+apps+in+Streamlit)](https://h6gapsniotf4qffb7ttjxl.streamlit.app/)
+[![Typing SVG](https://readme-typing-svg.herokuapp.com?font=Fira+Code&pause=1000&color=000000&random=false&width=435&lines=Link+to+apps+in+Streamlit)](https://ey9riiaq4f2qd6ia3g6yrr.streamlit.app/)
