@@ -15,6 +15,8 @@ checkpoint = "MBZUAI/LaMini-Flan-T5-783M"
 tokenizer = T5Tokenizer.from_pretrained(checkpoint)
 base_model = T5ForConditionalGeneration.from_pretrained(checkpoint, device_map='auto', torch_dtype=torch.float32)
 
+model_checkpoint = "glazzova/ml_translation_model1"
+translator = pipeline("translation", model=model_checkpoint)
 
 def generation_pipeline():
     pipe_generation = pipeline('text2text-generation',
@@ -71,7 +73,9 @@ def chatbot():
     if prompt:
         with (container.chat_message('assistant')):
             answer = generated_text(prompt)
-            container.markdown(answer[0]['generated_text'])
+            answer_all = answer[0]['generated_text']
+            translated_text = translator(answer_all)
+            container.markdown(translated_text[0]['translation_text'])
 
 
 def main():
@@ -99,7 +103,8 @@ def main():
                with col2:
                    summaru = summarization_pipeline(loader)
                    st.info("Составитель резюме")
-                   st.success(summaru)
+                   translator_summari = translator(summaru)
+                   st.success(translator_summari[0]['translation_text'])
                with st.container():
                   chatbot()
 
