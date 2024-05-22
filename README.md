@@ -19,19 +19,15 @@
 Список необходимых библиотек использующихся в проекте находится в файле **requirements.txt**
 <hr>
 
-_Ссылка на сайт_
 [![Typing SVG](https://readme-typing-svg.herokuapp.com?font=Fira+Code&pause=1000&color=000000&random=false&width=435&lines=Link+to+apps+in+Streamlit)](https://khdge7babttsqerttx7n5q.streamlit.app/)
-<hr>
-Тест создан в отдельном файле  **test.py** , инструмент для автоматического запуска тестирования  -- **Github Actions**
-<hr>
 
+<hr>
+Тест создан в отдельном файле  **test.py** , инструмент для автоматического запуска тестирования  **Github Actions**
 _Результат тестирования_
 [![Build Staus](https://github.com/VoroninMaxim/Sum-Bot-LaMini-Flan-t5/actions/workflows/python-app.yml/badge.svg?branch=main)]()
-
 <hr>
-
+<hr>
 ## План рефакторинга приложения
-<hr>
 <p>1. Структурировать архитектуру файлов приложения</p>
 <p>2. Добавить функцию просмотра загружаемого из PDF-файла</p>
 <p>3. Вынести загрузку модели в отдельную функцию</p>
