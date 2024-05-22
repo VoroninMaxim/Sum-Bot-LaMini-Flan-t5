@@ -22,11 +22,10 @@
 [![Typing SVG](https://readme-typing-svg.herokuapp.com?font=Fira+Code&pause=1000&color=000000&random=false&width=435&lines=Link+to+apps+in+Streamlit)](https://khdge7babttsqerttx7n5q.streamlit.app/)
 
 <hr>
+
 Тест создан в отдельном файле  **test.py** , инструмент для автоматического запуска тестирования  **Github Actions**
 _Результат тестирования_
-
 [![Build Staus](https://github.com/VoroninMaxim/Sum-Bot-LaMini-Flan-t5/actions/workflows/python-app.yml/badge.svg?branch=main)]()
-
 
 ## План рефакторинга приложения
 <hr>
