@@ -20,7 +20,7 @@
 <hr>
 
 _Ссылка на сайт_
-[![Build Staus](https://github.com/VoroninMaxim/project_toxi_text/actions/workflows/python-app.yml/badge.svg?branch=main)](https://github.com/VoroninMaxim/Sum-Bot-LaMini-Flan-t5/blob/master/.github/workflows/python-app.yml)
+[![Build Staus](https://github.com/VoroninMaxim/project_toxi_text/actions/workflows/python-app.yml/badge.svg?branch=main)](https://khdge7babttsqerttx7n5q.streamlit.app/)
 
 <hr>
 Тест создан в отдельном файле  **test.py** , инструмент для автоматического запуска тестирования  -- **Github Actions**
