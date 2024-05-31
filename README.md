@@ -19,7 +19,7 @@
 Список необходимых библиотек использующихся в проекте находится в файле **requirements.txt**
 <hr>
 
-[![Typing SVG](https://readme-typing-svg.herokuapp.com?font=Fira+Code&pause=1000&color=000000&random=false&width=435&lines=Link+to+apps+in+Streamlit)](https://khdge7babttsqerttx7n5q.streamlit.app/)
+[![Typing SVG](https://readme-typing-svg.herokuapp.com?font=Fira+Code&pause=1000&color=000000&random=false&width=435&lines=Link+to+apps+in+Streamlit)](https://ccwrcxmhsgrrfcknj3xfrb.streamlit.app/)
 
 <hr>
 
