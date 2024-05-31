@@ -4,9 +4,8 @@ import base64
 import os
 import tempfile
 import torch
-from streamlit_pdf_viewer import pdf_viewer
 
-from transformers import AutoTokenizer, AutoModelForSeq2SeqLM, pipeline, T5Tokenizer, T5ForConditionalGeneration
+from transformers import pipeline, T5Tokenizer, T5ForConditionalGeneration
 
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain.document_loaders import PyPDFLoader
@@ -14,7 +13,6 @@ from langchain.document_loaders import PyPDFLoader
 checkpoint = "MBZUAI/LaMini-Flan-T5-783M"
 tokenizer = T5Tokenizer.from_pretrained(checkpoint)
 base_model = T5ForConditionalGeneration.from_pretrained(checkpoint, device_map='auto', torch_dtype=torch.float32)
-
 
 def generation_pipeline():
     pipe_generation = pipeline('text2text-generation',
@@ -25,7 +23,6 @@ def generation_pipeline():
                                temperature=0.7,
                                top_p=0.95,
                                repetition_penalty=1.15)
-
     return pipe_generation
 
 def summarization_pipeline(filepath):
@@ -39,7 +36,6 @@ def summarization_pipeline(filepath):
     result = pipe_sum(input_text)
     result = result[0]['summary_text']
     return result
-
 
 def generated_text (prompt):
     pip_text_gen = generation_pipeline()
@@ -56,13 +52,11 @@ def file_preprocessing(file):
         final_texts = final_texts + text.page_content
     return final_texts, len(final_texts)
 
-
 def displayPDF(file):
     with open(file, "rb") as f:
         base64_pdf = base64.b64encode(f.read()).decode('utf-8')
     pdf_display = F'<iframe src="data:application/pdf;base64,{base64_pdf}" width="100%" height="600" type="application/pdf"></iframe>'
     st.markdown(pdf_display, unsafe_allow_html=True)
-
 
 def chatbot():
     st.title('Chatbot 🤖')
@@ -71,16 +65,15 @@ def chatbot():
     if prompt:
         with (container.chat_message('assistant')):
             answer = generated_text(prompt)
-            container.markdown(answer[0]['generated_text'])
-
+            answer_all = answer[0]['generated_text']
+            container.markdown(answer_all)
 
 def main():
-    st.title("Составитель резюме PDF-файла с помощью LaMini-LM модели 📃")
-    # Initialize Streamlit
+    st.title("Составитель резюме PDF-файла с помощью ИИ 📃")
     st.sidebar.title("Обработка документов")
     uploaded_files = st.sidebar.file_uploader("Загружать файлы PDF", accept_multiple_files=True, type=('pdf'))
 
-    if uploaded_files :
+    if uploaded_files:
         loader = None
         for file in uploaded_files:
             file_extension = os.path.splitext(file.name)[1]
@@ -93,9 +86,7 @@ def main():
                col1, col2 = st.columns([50, 50])
                with col1:
                   st.info("PDF фаил")
-                  binary_data = loader.getvalue()
-                  pdf_viewer(input=binary_data, width=700)
-                  #pdf_view = displayPDF(loader)
+                  pdf_view = displayPDF(loader)
                with col2:
                    summaru = summarization_pipeline(loader)
                    st.info("Составитель резюме")
